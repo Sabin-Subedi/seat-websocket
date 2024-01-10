@@ -18,8 +18,8 @@ export default function Authentication() {
     const [isLoading, setIsLoading] = useState(false)
     const form = useForm({
         initialValues: {
-            email: '',
-            password: '',
+            email: 'admin@gmail.com',
+            password: 'admin_admin',
         },
 
     });

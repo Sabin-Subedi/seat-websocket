@@ -1,4 +1,4 @@
-import { Button, Code, Group, ScrollArea, rem } from '@mantine/core';
+import {Button, Code, Group, ScrollArea, rem, Text} from '@mantine/core';
 import {
     IconAdjustments,
     IconCalendarStats,
@@ -52,7 +52,7 @@ const mockdata = [
 ];
 
 export function NavbarNested() {
-    const { signout } = useAuth()
+    const { signout,user } = useAuth()
     const links = mockdata.map((item) => <LinksGroup {...item} key={item.label} />);
 
     return (
@@ -67,7 +67,9 @@ export function NavbarNested() {
             <ScrollArea className={classes.links}>
                 <div className={classes.linksInner}>{links}</div>
             </ScrollArea>
-
+            <Text  size="lg" style={{ marginBottom: rem(10) }}>
+                {user?.username}
+            </Text>
             <div className={classes.footer}>
                 <Button onClick={() => signout()}>
                     Logout

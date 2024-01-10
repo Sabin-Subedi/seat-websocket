@@ -30,7 +30,7 @@ interface MeResponse {
 interface AuthContextType {
   user: unknown;
   signin: (values: loginValues) => void;
-  signout: (callback: VoidFunction) => void;
+  signout: () => void;
 }
 
 
@@ -66,7 +66,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           router('/login')
         }
       } catch (e) {
-        localStorage.clear()
+        if (e?.response?.status === 401) {
+          localStorage.clear()
+        }
         notifications.show({
           title: 'Login Error',
           message: e?.response?.message || e?.message,
